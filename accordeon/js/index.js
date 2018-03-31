@@ -14,14 +14,18 @@ const content = [
     }
 ]
 
+
 class Section extends React.Component {
     constructor(props) {
         super(props)
+        this.state({
+                className: 'section'
+        })
     }
 
     render() {
         return (
-            <section className="section">
+            <section className={this.state.className}>
                 <button onClick={this.props.onClick}>toggle</button>
                 <h3 className="sectionhead">{this.props.content.title}</h3>
                 <div className="articlewrap">
@@ -35,16 +39,15 @@ class Section extends React.Component {
 class Accordian extends React.Component {
     constructor(props) {
         super(props);
-        console.log('this.props', this.props)
     }
     toggle(e){
-        console.log('click')
+        console.log('click', e.target, e)
     }
 
 
     render() {
         return (
-            <main className="main" items={content}>
+            <main className="main" items={content} onClick={this.toggle}>
                 <Title title={this.props.children[0].props.title}/>
                 {this.props.children[1](this.props.items)}
             </main>
@@ -82,7 +85,7 @@ const Title = (props)=> {
 ReactDOM.render(
     <Accordian items={content}>
         <Title title={'React'}/>
-        {items => items.map((item, index)=>  <Section content={item} key={index} onClick={this.toggle}/>
+        {items => items.map((item, index)=>  <Section content={item} key={index} />
         )}
     </Accordian>,
     document.getElementById('accordian'));
