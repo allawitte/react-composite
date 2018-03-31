@@ -37,13 +37,16 @@ class Accordian extends React.Component {
         super(props);
         console.log('this.props', this.props)
     }
+    toggle(e){
+        console.log('click')
+    }
 
 
     render() {
         return (
             <main className="main" items={content}>
                 <Title title={this.props.children[0].props.title}/>
-                {this.props.children[0](this.props.items)}
+                {this.props.children[1](this.props.items)}
             </main>
         )
     }
