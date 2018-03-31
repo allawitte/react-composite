@@ -18,14 +18,20 @@ const content = [
 class Section extends React.Component {
     constructor(props) {
         super(props)
-        this.state({
+        this.state ={
                 className: 'section'
-        })
+        }
+    }
+    toggle(e){
+        console.log('click', e.target, e)
+        this.setState({
+            className: this.state.className.indexOf('open') == -1 ? 'section open' : 'section'
+        });
     }
 
     render() {
         return (
-            <section className={this.state.className}>
+            <section className={this.state.className}  onClick={this.toggle.bind(this)}>
                 <button onClick={this.props.onClick}>toggle</button>
                 <h3 className="sectionhead">{this.props.content.title}</h3>
                 <div className="articlewrap">
@@ -40,14 +46,11 @@ class Accordian extends React.Component {
     constructor(props) {
         super(props);
     }
-    toggle(e){
-        console.log('click', e.target, e)
-    }
 
 
     render() {
         return (
-            <main className="main" items={content} onClick={this.toggle}>
+            <main className="main" items={content}>
                 <Title title={this.props.children[0].props.title}/>
                 {this.props.children[1](this.props.items)}
             </main>
