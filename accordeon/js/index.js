@@ -22,8 +22,7 @@ class Section extends React.Component {
                 className: 'section'
         }
     }
-    toggle(e){
-        console.log('click', e.target, e)
+    toggle(){
         this.setState({
             className: this.state.className.indexOf('open') == -1 ? 'section open' : 'section'
         });
@@ -31,7 +30,7 @@ class Section extends React.Component {
 
     render() {
         return (
-            <section className={this.state.className}  onClick={this.toggle.bind(this)}>
+            <section className={this.state.className}  onClick={() => this.toggle()}>
                 <button onClick={this.props.onClick}>toggle</button>
                 <h3 className="sectionhead">{this.props.content.title}</h3>
                 <div className="articlewrap">
